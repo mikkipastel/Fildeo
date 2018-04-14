@@ -7,10 +7,10 @@ This project is reused code from my work to new application.
 ## Feature
 
 <p align="center">
-<img src="screencapture/01_main.png" width="15%">
-<img src="screencapture/02_filter.png" width="15%">
-<img src="screencapture/03_share.png" width="15%">
-<img src="screencapture/04_share.png" width="15%">
+<img src="screencapture/01_main.png" width="22%">
+<img src="screencapture/02_filter.png" width="22%">
+<img src="screencapture/03_share.png" width="22%">
+<img src="screencapture/04_share.png" width="22%">
 </p>
 
 - play video with filter
