@@ -7,10 +7,14 @@ This project is reused code from my work to new application.
 
 ## Feature
 
-<img src="screencapture/art.gif" width="33.33%">
+<img src="screencapture/01_main.png" width="33.33%">
+<img src="screencapture/02_filter.png" width="33.33%">
+<img src="screencapture/03_share.png" width="33.33%">
+<img src="screencapture/04_share.png" width="33.33%">
 
 - play video with filter
 - save video with filter
+- share video with filter to some application
 
 ## Resource
 
