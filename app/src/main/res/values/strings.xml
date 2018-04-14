@@ -1,0 +1,20 @@
+<resources>
+    <string name="app_name">Fildeo</string>
+
+    <string name="title_main">Choose video from …</string>
+    <string name="msg_gallery">Gallery</string>
+    <string name="msg_camera">Camera</string>
+
+    <string name="label_select_video">Select Video</string>
+    <string name="label_ok">OK</string>
+    <string name="label_cancel">Cancel</string>
+
+    <string name="permission_title_rationale">Permission needed</string>
+    <string name="permission_read_storage_rationale">Storage read permission is needed to pick files.</string>
+    <string name="toast_cannot_retrieve_selected_video">Cannot retrieve selected video</string>
+
+    <string name="msg_dialog">Saving video</string>
+
+    <string name="title_next">Next</string>
+    <string name="title_share">Share</string>
+</resources>
