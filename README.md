@@ -17,6 +17,9 @@ This project is reused code from my work to new application.
 - save video with filter
 - share video with filter to some application
 
+This application is in Play Store
+https://play.google.com/store/apps/details?id=com.mikkipastel.fildeo
+
 ## Resource
 
 ### Android Library
