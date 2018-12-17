@@ -5,11 +5,11 @@ import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
-import android.support.v7.app.AppCompatActivity
+import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
-import android.support.v4.app.ActivityCompat
-import android.support.v7.app.AlertDialog
+import androidx.core.app.ActivityCompat
+import androidx.appcompat.app.AlertDialog
 import android.widget.Toast
 import com.mikkipastel.fildeo.filter.EditVideoActivity
 import com.mikkipastel.fildeo.utils.FileUtils

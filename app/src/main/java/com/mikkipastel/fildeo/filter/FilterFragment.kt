@@ -3,14 +3,14 @@ package com.mikkipastel.fildeo.filter
 import android.net.Uri
 import android.os.Bundle
 import android.os.Environment
-import android.support.v4.app.Fragment
-import android.support.v7.widget.GridLayoutManager
+import androidx.fragment.app.Fragment
+import androidx.recyclerview.widget.GridLayoutManager
 import android.util.Log
-import android.view.Gravity
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
+import androidx.core.content.ContextCompat
 import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
@@ -75,10 +75,13 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
         filename = filepath.substring(filepath.lastIndexOf("/")+1)
         filterFilepath = mAppPath.toString() + "/MP4_$filename"
 
+        setHasOptionsMenu(true)
+        setToolbar()
+
         val adapter = AddFilterAdapter(this, filepath)
 
         recyclerView.isNestedScrollingEnabled = false
-        recyclerView.layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+        recyclerView.layoutManager = GridLayoutManager(context, 1, androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL, false)
         recyclerView.adapter = adapter
 
         GravitySnapHelper(Gravity.START).attachToRecyclerView(recyclerView)
@@ -86,9 +89,29 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
         recyclerView.onFlingListener = null
 
         adapter.notifyDataSetChanged()
+    }
 
-        btnNext.setOnClickListener {
-            saveVideoWithFilter()
+    private fun setToolbar() {
+        val supportToolbar = toolbar as Toolbar
+        (activity as AppCompatActivity).setSupportActionBar(supportToolbar)
+        supportToolbar.navigationIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_back)
+        supportToolbar.setNavigationOnClickListener {
+            activity?.onBackPressed()
+        }
+        activity?.title = ""
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        inflater.inflate(R.menu.menu_next, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.menu_next -> {
+                saveVideoWithFilter()
+                true
+            }
+            else -> false
         }
     }
 

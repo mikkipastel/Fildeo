@@ -3,8 +3,7 @@ package com.mikkipastel.fildeo.share
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.util.DisplayMetrics
+import androidx.appcompat.app.AppCompatActivity
 import android.view.Window
 import android.view.WindowManager
 import com.mikkipastel.fildeo.R
