@@ -11,7 +11,7 @@ import com.mikkipastel.fildeo.R
 class EditVideoActivity : AppCompatActivity() {
 
     companion object {
-        val BUNDLE_KEY_URI = "preview:uri"
+        const val BUNDLE_KEY_URI = "preview:uri"
 
         fun newIntent(context: Context?, uri: String?) : Intent {
             val intent = Intent(context, EditVideoActivity::class.java)
@@ -29,9 +29,9 @@ class EditVideoActivity : AppCompatActivity() {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN)
         setContentView(R.layout.activity_edit_video)
 
-        savedInstanceState ?: supportFragmentManager.beginTransaction().
-                replace(R.id.container, FilterVideoFragment.newInstance(intent.extras.getString(BUNDLE_KEY_URI))).
-                commit()
+        savedInstanceState ?: supportFragmentManager.beginTransaction()
+                .replace(R.id.container, FilterVideoFragment.newInstance(intent.extras.getString(BUNDLE_KEY_URI)))
+                .commit()
     }
 
 }

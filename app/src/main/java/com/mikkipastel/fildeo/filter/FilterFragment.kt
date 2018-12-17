@@ -37,7 +37,7 @@ import com.mikkipastel.fildeo.share.ShareActivity
 
 class FilterVideoFragment : Fragment(), AddFilterListener {
 
-    val mAppName = "Fildeo"
+    val mAppName = getString(R.string.app_name)
     private val mAppPath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), mAppName)
 
     lateinit var player: SimpleExoPlayer
@@ -50,7 +50,7 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
     private var mPosition : Int = 0
 
     companion object {
-        val ARG_KEY_URI = "preview:uri"
+        const val ARG_KEY_URI = "preview:uri"
 
         fun newInstance(uri: String): FilterVideoFragment {
             val fragment = FilterVideoFragment()

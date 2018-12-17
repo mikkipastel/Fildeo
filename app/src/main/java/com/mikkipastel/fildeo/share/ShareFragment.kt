@@ -18,9 +18,6 @@ import android.content.Intent
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.DefaultRenderersFactory
 import com.mikkipastel.fildeo.utils.MotionTouchListener
-import android.util.DisplayMetrics
-
-
 
 class ShareFragment: Fragment() {
 

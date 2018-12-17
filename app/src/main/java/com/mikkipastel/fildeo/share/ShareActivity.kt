@@ -12,7 +12,7 @@ import com.mikkipastel.fildeo.R
 class ShareActivity: AppCompatActivity() {
 
     companion object {
-        val BUNDLE_KEY_URI = "preview:uri"
+        const val BUNDLE_KEY_URI = "preview:uri"
 
         fun newIntent(context: Context?, uri: String?) : Intent {
             val intent = Intent(context, ShareActivity::class.java)
@@ -36,9 +36,5 @@ class ShareActivity: AppCompatActivity() {
                 .replace(R.id.container, ShareFragment.newInstance(filterFilepath))
                 .commit()
 
-//        val displayMetrics = DisplayMetrics()
-//        windowManager.defaultDisplay.getMetrics(displayMetrics)
-//        val height = displayMetrics.heightPixels
-//        val width = displayMetrics.widthPixels
     }
 }
