@@ -37,8 +37,8 @@ import com.mikkipastel.fildeo.share.ShareActivity
 
 class FilterVideoFragment : Fragment(), AddFilterListener {
 
-    val mAppName = getString(R.string.app_name)
-    private val mAppPath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), mAppName)
+    private lateinit var mAppName: String
+    private lateinit var mAppPath: File
 
     lateinit var player: SimpleExoPlayer
     lateinit var ePlayerView: EPlayerView
@@ -67,6 +67,9 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        mAppName = getString(R.string.app_name)
+        mAppPath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), mAppName)
 
         filepath = arguments!!.getString(ARG_KEY_URI)
         filename = filepath.substring(filepath.lastIndexOf("/")+1)
