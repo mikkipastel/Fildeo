@@ -88,7 +88,7 @@ class MainActivity : AppCompatActivity() {
             builder.setTitle(getString(R.string.permission_title_rationale))
             builder.setMessage(rationale)
             builder.setPositiveButton(getString(R.string.label_ok)) {
-                dialog, which -> ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
+                _, _ -> ActivityCompat.requestPermissions(this, arrayOf(permission), requestCode)
             }
             builder.setNegativeButton(getString(R.string.label_cancel), null)
             builder.show()

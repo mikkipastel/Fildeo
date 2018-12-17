@@ -26,7 +26,7 @@ class ShareFragment: Fragment() {
     private lateinit var filterFilepath : String
 
     companion object {
-        val ARG_KEY_URI = "preview:uri"
+        const val ARG_KEY_URI = "preview:uri"
 
         fun newInstance(uri: String): ShareFragment {
             val fragment = ShareFragment()
@@ -46,12 +46,14 @@ class ShareFragment: Fragment() {
 
         filterFilepath = arguments!!.getString(ARG_KEY_URI)
 
-        btnBackground.setOnTouchListener(MotionTouchListener())
-        btnBackground.setOnClickListener {
-            val shareIntent = Intent(Intent.ACTION_SEND)
-            shareIntent.type = "video/*"
-            shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(filterFilepath)))
-            startActivity(Intent.createChooser(shareIntent, "Share video to.."))
+        btnBackground.apply {
+            setOnTouchListener(MotionTouchListener())
+            setOnClickListener {
+                val shareIntent = Intent(Intent.ACTION_SEND)
+                shareIntent.type = "video/*"
+                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(filterFilepath)))
+                startActivity(Intent.createChooser(shareIntent, "Share video to.."))
+            }
         }
     }
 
@@ -67,6 +69,7 @@ class ShareFragment: Fragment() {
 
     private fun initializePlayer() {
         mPlayer = ExoPlayerFactory.newSimpleInstance(
+                context,
                 DefaultRenderersFactory(context),
                 DefaultTrackSelector(),
                 DefaultLoadControl())
@@ -74,8 +77,8 @@ class ShareFragment: Fragment() {
         playerView.player = mPlayer
         mPlayer.playWhenReady = true
 
-        mPlayer.prepare(ExtractorMediaSource.Factory(DefaultDataSourceFactory(context, "Fildeo")).
-                createMediaSource(Uri.fromFile(File(filterFilepath))), true, false)
+        mPlayer.prepare(ExtractorMediaSource.Factory(DefaultDataSourceFactory(context, context?.getString(R.string.app_name)))
+                .createMediaSource(Uri.fromFile(File(filterFilepath))), true, false)
     }
 
     private fun releasePlayer() {

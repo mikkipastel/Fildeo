@@ -1,6 +1,5 @@
 package com.mikkipastel.fildeo.gravity
 
-import android.os.Build
 import android.support.v7.widget.GridLayoutManager
 import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.OrientationHelper
@@ -16,10 +15,10 @@ internal class GravityDelegate @JvmOverloads constructor(private val gravity: In
     private var isRtlHorizontal: Boolean = false
     private var snapping: Boolean = false
 
-    var mWidthFactor = 0.95f
+    private var mWidthFactor = 0.95f
 
     private val mScrollListener = object : RecyclerView.OnScrollListener() {
-        override fun onScrollStateChanged(recyclerView: RecyclerView?, newState: Int) {
+        override fun onScrollStateChanged(recyclerView: RecyclerView, newState: Int) {
             super.onScrollStateChanged(recyclerView, newState)
             if (newState == RecyclerView.SCROLL_STATE_SETTLING) {
                 snapping = false
@@ -44,7 +43,7 @@ internal class GravityDelegate @JvmOverloads constructor(private val gravity: In
     fun attachToRecyclerView(recyclerView: RecyclerView?) {
         if (recyclerView != null) {
             recyclerView.onFlingListener = null
-            if ((gravity == Gravity.START || gravity == Gravity.END) && Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            if ((gravity == Gravity.START || gravity == Gravity.END)) {
                 isRtlHorizontal = recyclerView.context.resources.configuration
                         .layoutDirection == View.LAYOUT_DIRECTION_RTL
             }
