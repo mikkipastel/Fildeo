@@ -98,7 +98,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/afterglow.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -108,7 +108,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/alice_in_wonderland.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -118,7 +118,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/amber.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -128,7 +128,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/aurora.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -138,7 +138,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/blue_poppies.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -148,7 +148,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/blue_yellow_field.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -158,7 +158,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/carousel.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -168,7 +168,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/cold_desert.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -178,7 +178,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/cold_heart.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -188,7 +188,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/digital_film.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -198,7 +198,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/documentary.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -208,7 +208,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/electric.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -218,7 +218,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/ghosts_in_your_head.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -228,7 +228,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/good_luck_charm.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -238,7 +238,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/green_envy.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -248,7 +248,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/hummingbirds.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -258,7 +258,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/kiss_kiss.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -268,7 +268,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/left_hand_blues.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -278,7 +278,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/light_parades.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -288,7 +288,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/lullabye.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -298,7 +298,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/moth_wings.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -308,7 +308,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/old_postcards_01.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -318,7 +318,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/old_postcards_02.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -328,7 +328,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/regdoll.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -338,7 +338,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/peacock_feathers.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -348,7 +348,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/pistol.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -358,7 +358,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/rose_thorns_01.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -368,7 +368,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/rose_thorns_02.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -378,7 +378,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/set_you_free.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -388,7 +388,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/snow_white.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -398,7 +398,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/toes_in_the_ocean.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -408,7 +408,7 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/wild_at_heart.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
@@ -418,13 +418,17 @@ enum class FilterType {
                         val `is` = context!!.assets.open("acv/window_warmth.acv")
                         return GlToneCurveFilter(`is`)
                     } catch (e: IOException) {
-                        Log.e("FilterType", "Error")
+                        printLogError()
                     }
 
                     return GlFilter()
                 }
                 else -> return GlFilter()
             }
+        }
+
+        private fun printLogError() {
+            Log.e("FilterType", "Error")
         }
     }
 }

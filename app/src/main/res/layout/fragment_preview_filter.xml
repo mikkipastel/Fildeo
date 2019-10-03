@@ -3,7 +3,6 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#000000"
     android:orientation="vertical">
 
     <com.google.android.material.appbar.AppBarLayout
@@ -16,8 +15,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
-            android:background="#2A2A2A"
-            app:titleTextColor="#000000"/>
+            android:background="@color/colorPrimary"/>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -49,13 +47,12 @@
             android:paddingTop="16dp"
             android:paddingBottom="16dp"
             android:layout_alignParentBottom="true"
-            android:background="#2A2A2A">
+            android:background="@color/colorPrimary">
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="#2A2A2A"
                 android:clipToPadding="false"
                 android:paddingStart="16dp"
                 android:paddingEnd="16dp"/>

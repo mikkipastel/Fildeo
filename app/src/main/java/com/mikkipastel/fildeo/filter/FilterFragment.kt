@@ -73,20 +73,21 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
 
         filepath = arguments!!.getString(ARG_KEY_URI)
         filename = filepath.substring(filepath.lastIndexOf("/")+1)
-        filterFilepath = mAppPath.toString() + "/MP4_$filename"
+        filterFilepath = "$mAppPath/MP4_$filename"
 
         setHasOptionsMenu(true)
         setToolbar()
 
         val adapter = AddFilterAdapter(this, filepath)
 
-        recyclerView.isNestedScrollingEnabled = false
-        recyclerView.layoutManager = GridLayoutManager(context, 1, androidx.recyclerview.widget.GridLayoutManager.HORIZONTAL, false)
-        recyclerView.adapter = adapter
+        recyclerView.apply {
+            isNestedScrollingEnabled = false
+            layoutManager = GridLayoutManager(context, 1, GridLayoutManager.HORIZONTAL, false)
+            this.adapter = adapter
+            onFlingListener = null
+        }
 
         GravitySnapHelper(Gravity.START).attachToRecyclerView(recyclerView)
-
-        recyclerView.onFlingListener = null
 
         adapter.notifyDataSetChanged()
     }
@@ -94,9 +95,11 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
     private fun setToolbar() {
         val supportToolbar = toolbar as Toolbar
         (activity as AppCompatActivity).setSupportActionBar(supportToolbar)
-        supportToolbar.navigationIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_back)
-        supportToolbar.setNavigationOnClickListener {
-            activity?.onBackPressed()
+        supportToolbar.apply {
+            navigationIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_back)
+            setNavigationOnClickListener {
+                activity?.onBackPressed()
+            }
         }
         activity?.title = ""
     }

@@ -10,7 +10,7 @@ import android.os.Environment
 import android.provider.DocumentsContract
 import android.provider.MediaStore
 
-object FileUtils {
+class FileUtils {
 
     /**
      * Get a file path from a Uri. This will get the the path for Storage Access
@@ -38,7 +38,6 @@ object FileUtils {
                 if ("primary".equals(type, ignoreCase = true)) {
                     return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                 }
-
             } else if (isDownloadsDocument(uri)) {
 
                 val id = DocumentsContract.getDocumentId(uri)
@@ -97,8 +96,7 @@ object FileUtils {
                 return cursor.getString(columnIndex)
             }
         } finally {
-            if (cursor != null)
-                cursor.close()
+            cursor?.close()
         }
         return null
     }

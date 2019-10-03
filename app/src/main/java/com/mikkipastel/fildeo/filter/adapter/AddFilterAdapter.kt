@@ -15,7 +15,8 @@ import jp.co.cyberagent.android.gpuimage.GPUImageGrayscaleFilter
 import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter
 import kotlinx.android.synthetic.main.item_filter.view.*
 
-class AddFilterAdapter(private val mListener: AddFilterListener, private val mFilename: String): RecyclerView.Adapter<AddFilterAdapter.ViewHolder>() {
+class AddFilterAdapter(private val mListener: AddFilterListener,
+                       private val mFilename: String): RecyclerView.Adapter<AddFilterAdapter.ViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.item_filter, parent, false)
@@ -33,8 +34,10 @@ class AddFilterAdapter(private val mListener: AddFilterListener, private val mFi
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(position: Int, listener: AddFilterListener, filename: String) {
 
-            itemView.setOnTouchListener(MotionTouchListener())
-            itemView.setOnClickListener { v -> listener.onClick(v, position) }
+            itemView.apply {
+                setOnTouchListener(MotionTouchListener())
+                setOnClickListener { v -> listener.onClick(v, position) }
+            }
 
             var bitmap = ThumbnailUtils.createVideoThumbnail(filename, MediaStore.Video.Thumbnails.MICRO_KIND)
 
