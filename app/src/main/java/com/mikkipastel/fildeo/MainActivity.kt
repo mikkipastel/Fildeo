@@ -36,24 +36,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         btnCamera.setOnClickListener {
-            if ((ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
-                    && (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
-                openVideoCapture()
-            } else {
-                checkPermissionCamera()
+            when (checkPermissionForTakeMedia()) {
+                true -> openVideoCapture()
+                false -> checkPermissionCamera()
             }
         }
 
         btnGallery.setOnClickListener {
-            if ((ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
-                    && (ContextCompat.checkSelfPermission(this,
-                            Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)) {
-                pickFromGallery()
-            } else {
-                checkPermissionPickGallery()
+            when (checkPermissionForGallery()) {
+                true -> pickFromGallery()
+                false -> checkPermissionPickGallery()
             }
         }
     }
@@ -61,6 +53,16 @@ class MainActivity : AppCompatActivity() {
     private fun openVideoCapture() {
         val videoCapture = Intent(MediaStore.ACTION_VIDEO_CAPTURE)
         startActivityForResult(videoCapture, REQUEST_PICK_VIDEO)
+    }
+
+    private fun checkPermissionForTakeMedia(): Boolean {
+        return (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED)
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+    }
+
+    private fun checkPermissionForGallery(): Boolean {
+        return ((ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED)
+                && (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED))
     }
 
     private fun checkPermissionCamera() {
@@ -88,11 +90,9 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun pickFromGallery() {
-        val intent = Intent()
-        intent.apply {
+        val intent = Intent().apply {
             setTypeAndNormalize("video/*")
             action = Intent.ACTION_GET_CONTENT
-            addCategory(Intent.CATEGORY_OPENABLE)
         }
         startActivityForResult(
                 Intent.createChooser(intent,

@@ -14,6 +14,7 @@ import jp.co.cyberagent.android.gpuimage.GPUImage
 import jp.co.cyberagent.android.gpuimage.GPUImageGrayscaleFilter
 import jp.co.cyberagent.android.gpuimage.GPUImageToneCurveFilter
 import kotlinx.android.synthetic.main.item_filter.view.*
+import java.lang.NullPointerException
 
 class AddFilterAdapter(private val mListener: AddFilterListener,
                        private val mFilename: String): RecyclerView.Adapter<AddFilterAdapter.ViewHolder>() {
@@ -42,41 +43,43 @@ class AddFilterAdapter(private val mListener: AddFilterListener,
             var bitmap = ThumbnailUtils.createVideoThumbnail(filename, MediaStore.Video.Thumbnails.MICRO_KIND)
 
             val filterFile = arrayListOf<String>()
-            filterFile.addAll(listOf(
-                    "acv/afterglow.acv",
-                    "acv/alice_in_wonderland.acv",
-                    "acv/ambers.acv",
-                    "acv/aurora.acv",
-                    "acv/blue_poppies.acv",
-                    "acv/blue_yellow_field.acv",
-                    "acv/carousel.acv",
-                    "acv/cold_desert.acv",
-                    "acv/cold_heart.acv",
-                    "acv/digital_film.acv",
-                    "acv/documentary.acv",
-                    "acv/electric.acv",
-                    "acv/ghosts_in_your_head.acv",
-                    "acv/good_luck_charm.acv",
-                    "acv/green_envy.acv",
-                    "acv/hummingbirds.acv",
-                    "acv/kiss_kiss.acv",
-                    "acv/left_hand_blues.acv",
-                    "acv/light_parades.acv",
-                    "acv/lullabye.acv",
-                    "acv/moth_wings.acv",
-                    "acv/moth_wings.acv",
-                    "acv/old_postcards_01.acv",
-                    "acv/old_postcards_02.acv",
-                    "acv/peacock_feathers.acv",
-                    "acv/pistol.acv",
-                    "acv/ragdoll.acv",
-                    "acv/rose_thorns_01.acv",
-                    "acv/rose_thorns_02.acv",
-                    "acv/set_you_free.acv",
-                    "acv/snow_white.acv",
-                    "acv/toes_in_the_ocean.acv",
-                    "acv/wild_at_heart.acv",
-                    "acv/window_warmth.acv"))
+            filterFile.addAll(
+                    listOf(
+                            "acv/afterglow.acv",
+                            "acv/alice_in_wonderland.acv",
+                            "acv/ambers.acv",
+                            "acv/aurora.acv",
+                            "acv/blue_poppies.acv",
+                            "acv/blue_yellow_field.acv",
+                            "acv/carousel.acv",
+                            "acv/cold_desert.acv",
+                            "acv/cold_heart.acv",
+                            "acv/digital_film.acv",
+                            "acv/documentary.acv",
+                            "acv/electric.acv",
+                            "acv/ghosts_in_your_head.acv",
+                            "acv/good_luck_charm.acv",
+                            "acv/green_envy.acv",
+                            "acv/hummingbirds.acv",
+                            "acv/kiss_kiss.acv",
+                            "acv/left_hand_blues.acv",
+                            "acv/light_parades.acv",
+                            "acv/lullabye.acv",
+                            "acv/moth_wings.acv",
+                            "acv/moth_wings.acv",
+                            "acv/old_postcards_01.acv",
+                            "acv/old_postcards_02.acv",
+                            "acv/peacock_feathers.acv",
+                            "acv/pistol.acv",
+                            "acv/ragdoll.acv",
+                            "acv/rose_thorns_01.acv",
+                            "acv/rose_thorns_02.acv",
+                            "acv/set_you_free.acv",
+                            "acv/snow_white.acv",
+                            "acv/toes_in_the_ocean.acv",
+                            "acv/wild_at_heart.acv",
+                            "acv/window_warmth.acv")
+            )
 
             val gpuImage = GPUImage(itemView.context)
             gpuImage.setImage(bitmap)
@@ -96,9 +99,20 @@ class AddFilterAdapter(private val mListener: AddFilterListener,
                 }
             }
 
-            bitmap = gpuImage.bitmapWithFilterApplied
+            try {
+                bitmap = gpuImage.bitmapWithFilterApplied
+                itemView.apply {
+                    thumbnails.setImageBitmap(bitmap)
+                    textFilterName.text = when (position) {
+                        0 -> "normal"
+                        1 -> "grayscale"
+                        else -> filterFile[position-2].drop(4).dropLast(4)
+                    }
+                }
+            } catch (e: NullPointerException) {
+                //TODO something with get photo from Google Photos
+            }
 
-            itemView.thumbnails.setImageBitmap(bitmap)
         }
     }
 }

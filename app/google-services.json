@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "198842931148",
+    "firebase_url": "https://mikkipastel.firebaseio.com",
+    "project_id": "mikkipastel",
+    "storage_bucket": "mikkipastel.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:198842931148:android:0ec819ced5368c60b4af69",
+        "android_client_info": {
+          "package_name": "com.mikkipastel.fildeo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "198842931148-mfhm8iffr6ot6j6irn0uviaqkseg0190.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUZ4vmuMlhk0WJCMkqCF-dli0F1G3NAkY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "198842931148-mfhm8iffr6ot6j6irn0uviaqkseg0190.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

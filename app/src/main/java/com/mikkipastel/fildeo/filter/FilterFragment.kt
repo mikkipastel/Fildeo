@@ -15,23 +15,19 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.google.android.exoplayer2.ExoPlayerFactory
 import com.google.android.exoplayer2.Player
 import com.google.android.exoplayer2.SimpleExoPlayer
-import com.google.android.exoplayer2.source.ExtractorMediaSource
-import com.google.android.exoplayer2.trackselection.AdaptiveTrackSelection
-import com.google.android.exoplayer2.trackselection.DefaultTrackSelector
-import com.google.android.exoplayer2.upstream.DefaultBandwidthMeter
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory
 import com.google.android.exoplayer2.util.Util
 import com.mikkipastel.fildeo.R
 import com.mikkipastel.fildeo.filter.adapter.AddFilterAdapter
 import com.mikkipastel.fildeo.filter.interfaces.AddFilterListener
 import com.mikkipastel.fildeo.filter.utils.FilterType
-import com.mikkipastel.fildeo.gravity.GravitySnapHelper
 import kotlinx.android.synthetic.main.fragment_preview_filter.*
 import java.io.File
 import com.daasuu.epf.EPlayerView
 import com.daasuu.mp4compose.FillMode
 import com.daasuu.mp4compose.Rotation
 import com.daasuu.mp4compose.composer.Mp4Composer
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
 import com.mikkipastel.fildeo.filter.utils.FilterSave
 import com.mikkipastel.fildeo.share.ShareActivity
 
@@ -71,7 +67,7 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
         mAppName = getString(R.string.app_name)
         mAppPath = File(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_MOVIES), mAppName)
 
-        filepath = arguments!!.getString(ARG_KEY_URI)
+        filepath = arguments?.getString(ARG_KEY_URI) ?: ""
         filename = filepath.substring(filepath.lastIndexOf("/")+1)
         filterFilepath = "$mAppPath/MP4_$filename"
 
@@ -86,8 +82,6 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
             this.adapter = adapter
             onFlingListener = null
         }
-
-        GravitySnapHelper(Gravity.START).attachToRecyclerView(recyclerView)
 
         adapter.notifyDataSetChanged()
     }
@@ -168,26 +162,24 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
 
     private fun setUpSimpleExoPlayer() {
 
-        val bandwidthMeter = DefaultBandwidthMeter()
-        val videoTrackSelectionFactory = AdaptiveTrackSelection.Factory(bandwidthMeter)
-        val trackSelector = DefaultTrackSelector(videoTrackSelectionFactory)
-
-        val defaultBandwidthMeter = DefaultBandwidthMeter()
         val dataSourceFactory = DefaultDataSourceFactory(
-                context, Util.getUserAgent(context, mAppName), defaultBandwidthMeter)
-        val videoSource = ExtractorMediaSource.Factory(dataSourceFactory).
-                createMediaSource(Uri.fromFile(File(filepath)))
+                context,
+                Util.getUserAgent(context, mAppName)
+        )
+        val videoSource = ProgressiveMediaSource.Factory(dataSourceFactory)
+                .createMediaSource(Uri.fromFile(File(filepath)))
 
-        player = ExoPlayerFactory.newSimpleInstance(context, trackSelector)
-
-        player.prepare(videoSource)
-        player.playWhenReady = true
-        player.repeatMode = Player.REPEAT_MODE_ONE
+        player = ExoPlayerFactory.newSimpleInstance(context).apply {
+            prepare(videoSource)
+            playWhenReady = true
+            repeatMode = Player.REPEAT_MODE_ONE
+        }
     }
 
     private fun setUpGlPlayerView() {
-        ePlayerView = EPlayerView(context)
-        ePlayerView.setSimpleExoPlayer(player)
+        ePlayerView = EPlayerView(context).apply {
+            setSimpleExoPlayer(player)
+        }
         filterView.addView(ePlayerView)
         ePlayerView.onResume()
     }
