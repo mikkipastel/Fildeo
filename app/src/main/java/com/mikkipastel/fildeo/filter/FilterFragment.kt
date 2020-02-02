@@ -90,7 +90,7 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
         val supportToolbar = toolbar as Toolbar
         (activity as AppCompatActivity).setSupportActionBar(supportToolbar)
         supportToolbar.apply {
-            navigationIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_back)
+            navigationIcon = ContextCompat.getDrawable(context!!, R.drawable.ic_arrow_back)
             setNavigationOnClickListener {
                 activity?.onBackPressed()
             }
