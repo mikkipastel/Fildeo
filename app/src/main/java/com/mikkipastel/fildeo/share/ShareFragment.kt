@@ -15,13 +15,16 @@ import com.mikkipastel.fildeo.R
 import kotlinx.android.synthetic.main.fragment_share.*
 import java.io.File
 import android.content.Intent
+import androidx.core.content.FileProvider
 import com.google.android.exoplayer2.DefaultLoadControl
 import com.google.android.exoplayer2.DefaultRenderersFactory
+import com.google.android.exoplayer2.source.ProgressiveMediaSource
+import com.mikkipastel.fildeo.BuildConfig
 import com.mikkipastel.fildeo.utils.MotionTouchListener
 
 class ShareFragment: Fragment() {
 
-    lateinit var mPlayer: SimpleExoPlayer
+    private lateinit var mPlayer: SimpleExoPlayer
 
     private lateinit var filterFilepath : String
 
@@ -46,12 +49,19 @@ class ShareFragment: Fragment() {
 
         filterFilepath = arguments!!.getString(ARG_KEY_URI)
 
+        val uriFile = FileProvider.getUriForFile(
+                context!!,
+                BuildConfig.APPLICATION_ID + ".provider",
+                File(filterFilepath)
+        )
+
         btnBackground.apply {
             setOnTouchListener(MotionTouchListener())
             setOnClickListener {
-                val shareIntent = Intent(Intent.ACTION_SEND)
-                shareIntent.type = "video/*"
-                shareIntent.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(File(filterFilepath)))
+                val shareIntent = Intent(Intent.ACTION_SEND).apply {
+                    type = "video/*"
+                    putExtra(Intent.EXTRA_STREAM, uriFile)
+                }
                 startActivity(Intent.createChooser(shareIntent, "Share video to.."))
             }
         }
@@ -77,7 +87,7 @@ class ShareFragment: Fragment() {
         playerView.player = mPlayer
         mPlayer.playWhenReady = true
 
-        mPlayer.prepare(ExtractorMediaSource.Factory(DefaultDataSourceFactory(context, context?.getString(R.string.app_name)))
+        mPlayer.prepare(ProgressiveMediaSource.Factory(DefaultDataSourceFactory(context, context?.getString(R.string.app_name)))
                 .createMediaSource(Uri.fromFile(File(filterFilepath))), true, false)
     }
 
