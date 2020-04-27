@@ -12,6 +12,7 @@ import android.provider.MediaStore
 import com.mikkipastel.fildeo.BuildConfig
 import java.io.File
 import java.io.FileOutputStream
+import java.lang.RuntimeException
 import kotlin.math.min
 
 class FileUtils {
@@ -19,9 +20,7 @@ class FileUtils {
     @SuppressLint("NewApi")
     fun getPath(context: Context, uri: Uri): String? {
 
-        val isKitKat = Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT
-
-        if (isKitKat && DocumentsContract.isDocumentUri(context, uri)) {
+        if (DocumentsContract.isDocumentUri(context, uri)) {
             if (isExternalStorageDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
                 val split = docId.split(":".toRegex()).dropLastWhile { it.isEmpty() }.toTypedArray()
@@ -31,13 +30,19 @@ class FileUtils {
                     return Environment.getExternalStorageDirectory().toString() + "/" + split[1]
                 }
             } else if (isDownloadsDocument(uri)) {
+                val filename = getFileName(context, uri)
+
                 val id = DocumentsContract.getDocumentId(uri)
                 return if (id.toCharArray().all { it.isDigit() }) {
                     val contentUri = ContentUris.withAppendedId(
                             Uri.parse("content://downloads/public_downloads"), id.toLong())
-                    getDataColumn(context, contentUri, null, null)
+                    try {
+                        getDataColumn(context, contentUri, null, null)
+                    } catch (e: RuntimeException) {
+                        setDownloadFilePath(filename!!)
+                    }
                 } else {
-                    Uri.parse(id).path
+                    setDownloadFilePath(filename!!)
                 }
             } else if (isMediaDocument(uri)) {
                 val docId = DocumentsContract.getDocumentId(uri)
@@ -122,6 +127,26 @@ class FileUtils {
             cursor?.close()
         }
         return null
+    }
+
+    private fun getFileName(context: Context, uri: Uri): String? {
+        var cursor: Cursor? = null
+        val projection = arrayOf(MediaStore.MediaColumns.DISPLAY_NAME)
+
+        try {
+            cursor = context.contentResolver.query(uri, projection, null, null, null)
+            if (cursor != null && cursor.moveToFirst()) {
+                val index = cursor.getColumnIndexOrThrow(MediaStore.MediaColumns.DISPLAY_NAME)
+                return cursor.getString(index)
+            }
+        } finally {
+            cursor?.close()
+        }
+        return null
+    }
+
+    private fun setDownloadFilePath(filename: String): String {
+        return Environment.getExternalStorageDirectory().toString() + "/Download/$filename"
     }
 
     private fun isGooglePhotosUri(uri: Uri): Boolean {

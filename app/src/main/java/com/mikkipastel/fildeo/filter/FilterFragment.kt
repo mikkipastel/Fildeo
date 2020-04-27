@@ -126,7 +126,6 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
         }
 
         if (mPosition != 0) {
-
             Mp4Composer(filepath, filterFilepath)
                     .rotation(Rotation.NORMAL)
                     .fillMode(FillMode.PRESERVE_ASPECT_FIT)
@@ -139,6 +138,7 @@ class FilterVideoFragment : Fragment(), AddFilterListener {
                         override fun onCompleted() {
                             Log.d(mAppName, "onCompleted() Filter : $filterFilepath")
                             dialog?.dismiss()
+                            activity?.finish()
                             val intent = ShareActivity.newIntent(context, filterFilepath)
                             startActivity(intent)
                         }
