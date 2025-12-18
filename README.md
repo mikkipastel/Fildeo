@@ -17,7 +17,7 @@ This project is reused code from my work to new application.
 - save video with filter
 - share video with filter to some application
 
-This application is in Play Store
+This application is in Play Store (will migrate to Jetpack Compose and submit again)
 https://play.google.com/store/apps/details?id=com.mikkipastel.fildeo
 
 ## Resource
